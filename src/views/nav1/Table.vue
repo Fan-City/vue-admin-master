@@ -32,7 +32,7 @@
 			<el-table-column prop="addr" label="地址" min-width="180" sortable>
 			</el-table-column>
 			<el-table-column label="操作" width="150">
-				<template lot-scope="scope">
+				<template slot-scope="scope">
 					<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
 					<el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
 				</template>
@@ -42,7 +42,7 @@
 		<!--工具条-->
 		<el-col :span="24" class="toolbar">
 			<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
-			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
+			<el-pagination layout="prev, pager, next ,total" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
 			</el-pagination>
 		</el-col>
 
@@ -108,7 +108,6 @@
 	import util from '../../common/js/util'
 	//import NProgress from 'nprogress'
 	import { getUserListPage, removeUser, batchRemoveUser, editUser, addUser } from '../../api/api';
-
 	export default {
 		data() {
 			return {
@@ -204,7 +203,7 @@
 			//显示编辑界面
 			handleEdit: function (index, row) {
 				this.editFormVisible = true;
-				this.editForm = Object.assign({}, row);
+				this.editForm = row;
 			},
 			//显示新增界面
 			handleAdd: function () {
@@ -289,7 +288,55 @@
 				}).catch(() => {
 
 				});
+			},
+
+			// promise测试
+			// 当调用testPromise函数后，同步执行getdate方法，获取返回值后调用testPThen方法
+			// promise是同步执行，主要解决函数多级调用，节省等待时间，让代码可读性更高，vue常用的axios就是在promise的基础上做了封装
+			getdate(data) {
+				return new Promise((resolve, reject)=>{
+					if (data > 3) {
+						resolve(data);
+					} else {
+						reject("小于或等于3");
+					}
+				});
+			},
+			testPThen(res) {
+				console.log("=====", res)
+			},
+			// 调用
+			testPromise() {
+				this.getdate(1).then((reDate)=>{
+					this.testF(reDate);
+				});
+				this.getdate(7).then((reDate)=>{
+					this.testF(reDate);
+				});
+			},
+
+			//aysnc测试
+			async isAsync(num) {
+				if (num > 0) {
+					// 这里相当于promise的resolve
+					return num + '大于零'
+				} else {
+					// 这里相当于promise的reject
+					throw num  + '小于等于0'
+				}
+			},
+
+			testAsyncFunction(){
+				testAsync(1).then(function (reDate) {
+					console.log(v); 
+				}),
+				imAsync(0).catch(function (reDate) {
+					console.log(v);
+				})
 			}
+
+
+
 		},
 		mounted() {
 			this.getUsers();

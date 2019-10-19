@@ -10,6 +10,7 @@ import Page5 from './views/nav2/Page5.vue'
 import Page6 from './views/nav3/Page6.vue'
 import echarts from './views/charts/echarts.vue'
 import swiperPage from './views/swiperPage/swiperPage.vue'
+import preview from './views/preview/preview.vue'
 
 let routes = [
     {
@@ -73,6 +74,15 @@ let routes = [
         iconCls: 'fa fa-bar-chart',
         children: [
             { path: '/swiperPage', component: swiperPage, name: 'swiperPage' }
+        ]
+    },
+    {
+        path: '/',
+        component: Home,
+        name: 'preview',
+        iconCls: 'fa fa-bar-chart',
+        children: [
+            { path: '/preview', component: preview, name: 'preview' }
         ]
     },
     {

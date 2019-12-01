@@ -67,15 +67,15 @@ let routes = [
             { path: '/echarts', component: echarts, name: 'echarts' }
         ]
     },
-    {
-        path: '/',
-        component: Home,
-        name: 'swiperPage',
-        iconCls: 'fa fa-bar-chart',
-        children: [
-            { path: '/swiperPage', component: swiperPage, name: 'swiperPage' }
-        ]
-    },
+    // {
+    //     path: '/',
+    //     component: Home,
+    //     name: 'swiperPage',
+    //     iconCls: 'fa fa-bar-chart',
+    //     children: [
+    //         { path: '/swiperPage', component: swiperPage, name: 'swiperPage' }
+    //     ]
+    // },
     {
         path: '/',
         component: Home,

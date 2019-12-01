@@ -1,4 +1,4 @@
-**demo**: [https://taylorchen709.github.io/vue-admin/](https://taylorchen709.github.io/vue-admin/)
+### 此项目是抄袭了同行的一个项目，并在其基础上做了拓展和维护
 
 # To start
 
